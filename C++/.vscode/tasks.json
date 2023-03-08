@@ -1,0 +1,42 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-g++", // 给当前的生成任务一个名字
+            "type": "shell",
+            "command": "g++",
+            "args": [ // 如果你以后对于编译参数有任何修改，就在这里修改。
+                "-g",
+                "${fileDirname}/${fileBasename}", // ${fileBasenmae} VS Code 内置变量: 当前活动文件的完整文件名 - helloworld.cpp
+                // "${fileDirname}/another.cpp",
+                "-o",
+                "${workspaceFolder}/build/Debug/${fileBasenameNoExtension}", // ${fileBasenameNoExtension} 这个是 VS Code 内置变量: 当前活动文件的完整文件名舍去扩展名 - helloworld
+                "-Wall", // 开启全部警告
+                "-lm"
+            ],
+            // 错误消息获得 - 正则表达式
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    // "${workspaceRoot}"
+                    "\\"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": {
+                "kind": "build", // 指定当前任务类型
+                "isDefault": true // 设置为默认任务  
+            }
+        }
+    ]
+}

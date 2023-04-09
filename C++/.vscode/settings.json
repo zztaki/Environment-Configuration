@@ -1,0 +1,6 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/cachelib",
+    "clangd.fallbackFlags": [
+        "-I${workspaceFolder}/include" // 配置本项目 clangd 的头文件查找路径
+    ]
+}
